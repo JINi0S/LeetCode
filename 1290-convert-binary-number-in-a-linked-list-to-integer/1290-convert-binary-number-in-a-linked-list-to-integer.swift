@@ -14,26 +14,20 @@ class Solution {
         
         var index: Float = 0.0
         var maxIndex: Float = 0.0
-        var result = 0
+        var result: Int = 0
         
         while currentNode!.next != nil {
             maxIndex += 1
             currentNode = currentNode!.next
         }
+        
         currentNode = head
         
-        while true {
+        for i in 0...Int(maxIndex) {
             if currentNode!.val == 1 {
-                result += Int(pow(2.0, maxIndex - index))
+                result += Int(pow(2.0, maxIndex - Float(i)))
             }
-            index += 1.0
-            
-            if currentNode!.next == nil {
-                break
-            } else {
-                currentNode = currentNode!.next
-            }
-
+            currentNode = currentNode!.next
         }
         return result
     }
