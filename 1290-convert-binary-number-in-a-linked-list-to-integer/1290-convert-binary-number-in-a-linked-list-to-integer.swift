@@ -12,7 +12,6 @@ class Solution {
     func getDecimalValue(_ head: ListNode?) -> Int {
         var currentNode = head
         
-        var index: Float = 0.0
         var maxIndex: Float = 0.0
         var result: Int = 0
         
