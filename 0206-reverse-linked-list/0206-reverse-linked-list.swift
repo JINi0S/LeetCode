@@ -14,7 +14,7 @@ class Solution {
          if head == nil || head!.next == nil {
             return head
         }
-        var cur = head             
+        var cur: ListNode? = head             
         var next = cur!.next
        
         var result = reverseList(next)
