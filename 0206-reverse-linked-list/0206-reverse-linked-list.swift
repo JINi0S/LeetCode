@@ -15,9 +15,9 @@ class Solution {
             return head
         }
         var cur: ListNode? = head             
-        var next = cur!.next
+        var next: ListNode? = cur!.next
        
-        var result = reverseList(next)
+        var result: ListNode? = reverseList(next)
         next!.next = cur
         cur!.next = nil
         return result
