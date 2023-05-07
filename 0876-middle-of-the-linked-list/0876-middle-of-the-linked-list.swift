@@ -9,15 +9,11 @@
  * }
  */
 class Solution {
-    func middleNode(_ head: ListNode?) -> ListNode? {
-        var headList = head
-        
+    func middleNode(_ head: ListNode?) -> ListNode? {        
         var currentNode = head
         var currentIndex = 0
       
-        guard let head = headList else {
-            return headList
-        }
+        if head == nil { return head }
         
         while  currentNode != nil {
             currentNode = currentNode!.next
@@ -27,10 +23,12 @@ class Solution {
             currentIndex += 1
         }
         
+        currentNode = head
+        
         for i in 0..<(currentIndex/2){
-            headList = headList!.next
+            currentNode = currentNode!.next
         }
         
-        return headList
+        return currentNode
     }
 }
