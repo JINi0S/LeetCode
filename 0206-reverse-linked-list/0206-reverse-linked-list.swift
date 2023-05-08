@@ -10,15 +10,12 @@
 */
 
 class Solution {
-    func reverseList(_ head: ListNode?) -> ListNode? { //내 next가 참조할 놈은 나
-         if head == nil || head!.next == nil {
-            return head
-        }
+    func reverseList(_ head: ListNode?) -> ListNode? {
+        if head == nil || head!.next == nil { return head }
         var cur: ListNode? = head             
-        var next: ListNode? = cur!.next
-       
-        var result: ListNode? = reverseList(next)
-        next!.next = cur
+        var result: ListNode? = reverseList(cur!.next)
+        
+        cur!.next!.next = cur
         cur!.next = nil
         return result
     } 
