@@ -1,7 +1,8 @@
 
 class MyStack {
-    var stack: [Int] = []
+    var stack: [Int]
     init() {
+        self.stack = []
     }
     
     func push(_ x: Int) {
