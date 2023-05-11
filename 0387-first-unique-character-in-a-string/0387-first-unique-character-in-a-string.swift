@@ -5,14 +5,14 @@ class Solution {
         for str in s {
             if let index = queue.firstIndex(of: str) {
                 queue.append(str)
-                same.append(false)
-                same[index] = false
+                same.append(true)
+                same[index] = true
             }
             else {
                 queue.append(str)
-                same.append(true)
+                same.append(false)
             }
         }
-        return same.firstIndex(of: true) ?? -1
+        return same.firstIndex(of: false) ?? -1
     }
 }
