@@ -18,17 +18,14 @@ class Solution {
         guard let root = root else {return ""}
         var result : String = String(root.val)
         
-        var left = root.left
-        var right = root.right
-
-        if left != nil  {
-            result.append("(\(tree2str(left)))")
+        if root.left != nil  {
+            result.append("(\(tree2str(root.left)))")
         }
-        else if left == nil && right != nil {
+        else if root.left == nil && root.right != nil {
             result.append("()")
         }
-        if right != nil {
-            result.append("(\(tree2str(right)))")
+        if root.right != nil {
+            result.append("(\(tree2str(root.right)))")
         }
         return result
     }
