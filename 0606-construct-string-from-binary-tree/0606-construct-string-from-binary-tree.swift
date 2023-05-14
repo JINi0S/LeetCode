@@ -19,13 +19,13 @@ class Solution {
         var result : String = String(root.val)
         
         if root.left != nil  {
-            result += "(\(tree2str(root.left)))"
+            result.append("(\(tree2str(root.left)))")
         }
         else if root.left == nil && root.right != nil {
-            result += "()"
+            result.append("()")
         }
         if root.right != nil {
-            result += "(\(tree2str(root.right)))"
+            result.append("(\(tree2str(root.right)))")
         }
         return result
     }
