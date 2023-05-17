@@ -19,10 +19,11 @@ class Solution {
         
         var result: [Double] = []
         var queue = [root]
-        
+        var sum : Int
+        var count: Int
         while queue.count != 0 {
-            var sum = 0
-            let count = queue.count
+            sum = 0
+            count = queue.count
             
             for i in 0..<count {
                 let node = queue.removeFirst()
