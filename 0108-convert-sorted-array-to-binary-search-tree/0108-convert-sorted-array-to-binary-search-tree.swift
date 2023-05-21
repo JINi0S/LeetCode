@@ -21,7 +21,7 @@ class Solution {
     func bst(_ num: [Int], _ low: Int, _ high: Int) -> TreeNode?{
          guard low <= high else { return nil }
 
-         let mid = low + (high - low) / 2
+         let mid = (low + high) / 2
          let root = TreeNode(num[mid])
          root.left = bst(num, low, mid - 1)
          root.right = bst(num, mid + 1, high)
