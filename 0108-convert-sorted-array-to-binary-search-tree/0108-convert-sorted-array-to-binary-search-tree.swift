@@ -15,16 +15,19 @@
  */
 class Solution {
     func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
-        return bst(nums, 0, nums.count - 1)
+        return make(nums, 0, nums.count - 1)
     }
     
-    func bst(_ num: [Int], _ low: Int, _ high: Int) -> TreeNode?{
-         guard low <= high else { return nil }
+    func make(_ nums: [Int], _ first: Int, _ last: Int) -> TreeNode? {
+        guard first <= last else { return nil }
 
-         let mid = (low + high) / 2
-         let root = TreeNode(num[mid])
-         root.left = bst(num, low, mid - 1)
-         root.right = bst(num, mid + 1, high)
-         return root
+        var mid = (first + last) / 2
+        
+        var node = TreeNode(nums[mid]) //배열의 중간 인덱스 값으로 루트노드 초기화
+        
+        //트리만들기
+        node.left = make(nums, first, mid - 1)
+        node.right = make(nums, mid + 1, last)
+        return node
     }
 }
