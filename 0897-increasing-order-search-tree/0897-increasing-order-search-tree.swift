@@ -14,25 +14,25 @@
  * }
  */
 class Solution {
-    var res = TreeNode(0)
-    var ref : TreeNode?
-
+    var node = TreeNode(0)
+    var prev: TreeNode?
+    
     func increasingBST(_ root: TreeNode?) -> TreeNode? {
         guard let root = root else {return nil}
-        ref = res
-        dfs(root)
- 
-        return res.right
+        prev = node
+        insert(root)
+        return node.right
     }
     
-    func dfs(_ root: TreeNode?) {
+    func insert(_ root: TreeNode?) {
         guard let root = root else {return}
-        dfs(root.left)
+        
+        insert(root.left)
         
         root.left = nil
-        ref!.right = root
-        ref = ref!.right
-        
-        dfs(root.right)
+        prev!.right = root
+        prev = prev!.right
+         
+        insert(root.right)
     }
 }
