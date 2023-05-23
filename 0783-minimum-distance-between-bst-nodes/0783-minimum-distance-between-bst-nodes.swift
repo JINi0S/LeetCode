@@ -19,20 +19,20 @@ class Solution {
 
     func minDiffInBST(_ root: TreeNode?) -> Int {
         guard let root = root else {return 0}
-        minDiff(root)
+        inorder(root)
         return minimum
     }
     
-    func minDiff(_ root: TreeNode?) {
+    func inorder(_ root: TreeNode?) {
         guard let root = root else {return}
         
-        minDiff(root.left)
+        inorder(root.left)
 
         if let prevValue = prev {
             minimum = min(minimum, root.val - prevValue)
         } 
         
         prev = root.val
-        minDiff(root.right)
+        inorder(root.right)
     }
 }
