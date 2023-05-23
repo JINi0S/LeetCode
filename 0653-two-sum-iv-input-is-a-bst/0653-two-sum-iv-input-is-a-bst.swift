@@ -13,74 +13,28 @@
  *     }
  * }
  */
-
-// class Solution {
-//     func findTarget(_ root: TreeNode?, _ k: Int) -> Bool {
-//         guard let root = root else { return false }
-        
-//         var t = k - root.val
-        
-//         if k == t * 2 && root.left == nil && root.right == nil{
-//             return false
-//         }
-        
-//         if find(root, t) {
-//             return true
-//         }
-        
-//         if findTarget(root.left, k) {
-//             return true
-//         }
-//         if findTarget(root.right, k) {
-//             return true
-//         }
-        
-//         return false
-//     }
-    
-//     func find(_ root: TreeNode?, _ key: Int ) -> Bool {
-//         guard let root = root else { return false }
-//         print("find", root.val, key)
-        
-//         if root.val == key {
-//             return true
-//         }
-//         else if root.val > key {
-//             return find(root.left, key)
-//         }
-//         else {
-//             return find(root.right, key)
-//         }
-//         return false
-//     }
-// }
-
-
 class Solution {
     func findTarget(_ root: TreeNode?, _ k: Int) -> Bool {
-        return find(root, root, k)
+        return traverse(root, root, k)
     }
-    
-    func find(_ node: TreeNode?, _ root: TreeNode?, _ k: Int) -> Bool {
+    func traverse(_ root: TreeNode?, _ node: TreeNode?, _ k: Int) -> Bool{
         guard let node = node else { return false }
-        
-        let complement = k - node.val
-        if complement != node.val && search(root, complement) {
+        var key: Int = k - node.val
+        if key != node.val && find(root, key) {
             return true
         }
-        
-        return find(node.left, root, k) || find(node.right, root, k)
+        return traverse(root, node.left, k) || traverse(root, node.right, k)
     }
     
-    func search(_ node: TreeNode?, _ target: Int) -> Bool {
-        guard let node = node else { return false }
+    func find(_ root:TreeNode?, _ key: Int) -> Bool{
+        guard let root = root else {return false}
         
-        if node.val == target {
-            return true
-        } else if node.val < target {
-            return search(node.right, target)
-        } else {
-            return search(node.left, target)
+        if root.val == key { return true}
+        else if root.val > key {
+            return find(root.left, key)
+        }
+        else {
+            return find(root.right, key)
         }
     }
 }
