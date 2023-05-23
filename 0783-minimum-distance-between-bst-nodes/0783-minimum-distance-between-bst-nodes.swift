@@ -14,25 +14,25 @@
  * }
  */
 class Solution {
-    var minimum = Int.max
     var prev: Int?
+    var minimum = Int.max
 
     func minDiffInBST(_ root: TreeNode?) -> Int {
         guard let root = root else {return 0}
-        culMin(root) 
+        minDiff(root)
         return minimum
     }
     
-    func culMin(_ root: TreeNode?) {
-        if root == nil {
-            return
-        }
+    func minDiff(_ root: TreeNode?) {
+        guard let root = root else {return}
         
-        culMin(root!.left)
-        if prev != nil {
-            minimum = min(minimum, root!.val - prev!)
-        }
-        prev = root!.val
-        culMin(root!.right)
+        minDiff(root.left)
+
+        if let prevValue = prev {
+            minimum = min(minimum, root.val - prevValue)
+        } 
+        
+        prev = root.val
+        minDiff(root.right)
     }
 }
