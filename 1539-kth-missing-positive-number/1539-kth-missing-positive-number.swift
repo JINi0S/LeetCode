@@ -3,9 +3,9 @@ class Solution {
         var missing: [Int] = []
         var num = 0 
 
-        // guard arr[arr.count-1] != arr.count else {
-        //     return arr.count + 2
-        // }
+        guard arr[arr.count-1] != arr.count else {
+            return arr.count + k
+        }
         
         while missing.count < k+1 {
             if !arr.contains(num) {
