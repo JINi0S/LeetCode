@@ -3,33 +3,41 @@ class Solution {
         var n1 = nums1.sorted()
         var n2 = nums2.sorted()
         var result: [Int] = []
-        
-        var freqDict: [Int: Int] = [:] // 딕셔너리 생성
-        
+         
         if nums1.count > nums2.count {
-            for num in n1 {
-                freqDict[num, default: 0] += 1 // nums1의 요소들을 딕셔너리에 추가
-            }
-            
-            for num in n2 {
-                if let count = freqDict[num], count > 0 {
-                    result.append(num) // 딕셔너리에 있는 경우 결과에 추가하고 카운트 감소
-                    freqDict[num] = count - 1
+            for n in n2 {
+                if let index = same(n1, 0..<n1.count, n) {
+                    result.append(n1[index])
+                    n1.remove(at: index)
                 }
             }
-        } else {
-            for num in n2 {
-                freqDict[num, default: 0] += 1 // nums2의 요소들을 딕셔너리에 추가
-            }
-            
-            for num in n1 {
-                if let count = freqDict[num], count > 0 {
-                    result.append(num) // 딕셔너리에 있는 경우 결과에 추가하고 카운트 감소
-                    freqDict[num] = count - 1
+        } 
+        else {
+            for n in n1 {
+                if let index = same(n2, 0..<n2.count, n) {
+                    result.append(n2[index])
+                    n2.remove(at: index)
                 }
             }
         }
-        
         return result
+    }
+    
+    func same(_ arr: [Int?], _ range: Range<Int>, _ val: Int) -> Int? {
+        guard range.lowerBound < range.upperBound else {
+            return nil
+        } 
+        let size = range.count
+        let middle = range.lowerBound + (size / 2)
+              
+        if arr[middle] == val {
+            return middle
+        }
+        else if arr[middle]! > val {
+            return same(arr, range.lowerBound..<middle, val)
+        }
+        else {
+            return same(arr, (middle+1)..<range.upperBound, val)
+        }
     }
 }
