@@ -4,22 +4,14 @@ class Solution {
         var n2 = nums2.sorted()
         var result: [Int] = []
          
-        if nums1.count > nums2.count {
             for n in n2 {
                 if let index = same(n1, 0..<n1.count, n) {
                     result.append(n1[index])
                     n1.remove(at: index)
                 }
-            }
-        } 
-        else {
-            for n in n1 {
-                if let index = same(n2, 0..<n2.count, n) {
-                    result.append(n2[index])
-                    n2.remove(at: index)
-                }
-            }
+            
         }
+        
         return result
     }
     
