@@ -3,7 +3,6 @@ class Solution {
         let num = nums.sorted()
         
         for i in 0..<num.last!+1 {
-            print(i, find(num, i, 0, num.count-1) )
             if i == find(num, i, 0, num.count-1) {
                 return i
             }
