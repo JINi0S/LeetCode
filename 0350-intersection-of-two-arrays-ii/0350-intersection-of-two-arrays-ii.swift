@@ -4,7 +4,7 @@ class Solution {
         var n2 = nums2.sorted()
         var result: [Int] = []
          
-        if nums1.count < nums2.count {
+        if nums1.count > nums2.count {
             for n in n2 {
                 if let index = same(n1, 0..<n1.count, n) {
                     result.append(n1[index])
