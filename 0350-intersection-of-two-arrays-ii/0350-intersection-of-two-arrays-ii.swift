@@ -4,40 +4,31 @@ class Solution {
         var n2 = nums2.sorted()
         var result: [Int] = []
          
-        if nums1.count > nums2.count {
-            for n in n2 {
-                if let index = same(n1, 0..<n1.count, n) {
-                    result.append(n1[index])
-                    n1.remove(at: index)
-                }
-            }
-        } 
-        else {
-            for n in n1 {
-                if let index = same(n2, 0..<n2.count, n) {
-                    result.append(n2[index])
-                    n2.remove(at: index)
-                }
+        for n in n2 {
+            if let index = same(n1, 0, n1.count-1, n) {
+                result.append(n1[index])
+                n1.remove(at: index)
             }
         }
+        
         return result
     }
     
-    func same(_ arr: [Int?], _ range: Range<Int>, _ val: Int) -> Int? {
-        guard range.lowerBound < range.upperBound else {
+    func same(_ arr: [Int?], _ low: Int, _ high: Int, _ val: Int) -> Int? {
+        guard low <= high else {
             return nil
         } 
-        let size = range.count
-        let middle = range.lowerBound + (size / 2)
+        
+        let middle = low + (high - low / 2)
               
         if arr[middle] == val {
             return middle
         }
         else if arr[middle]! > val {
-            return same(arr, range.lowerBound..<middle, val)
+            return same(arr, low, middle-1, val)
         }
         else {
-            return same(arr, (middle+1)..<range.upperBound, val)
+            return same(arr, middle+1, high, val)
         }
     }
 }
