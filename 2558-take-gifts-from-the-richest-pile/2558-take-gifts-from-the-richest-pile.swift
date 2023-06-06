@@ -1,9 +1,10 @@
 class Solution {
     func pickGifts(_ gifts: [Int], _ k: Int) -> Int {
         var gift = gifts
-        for i in 0..<k {
-            gift = gift.sorted(by: >)
-            gift[0] = Int((Double(gift[0])).squareRoot())
+        for _ in 0..<k {
+            let max = gift.max()!
+            var index = gift.firstIndex(of: max)!
+            gift[index] = Int((Double(gift[index])).squareRoot())
         }
       
         return gift.reduce(0) { $0+$1 }
