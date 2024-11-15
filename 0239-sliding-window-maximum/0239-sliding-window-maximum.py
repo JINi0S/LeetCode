@@ -1,21 +1,27 @@
+import heapq
+from collections import defaultdict
+
 class Solution(object):
     def maxSlidingWindow(self, nums, k):
-        l = deque([])
-        
+        ans = [max(nums[:k])]
+        pq = []
+        out = defaultdict(int)
+
         for i in range(k):
-            while l and nums[i]>=nums[l[-1]]:
-                l.pop()
-            l.append(i)
-            
-        ans = [nums[l[0]]]
-		
-        for i in range(1,len(nums)-k+1):
-            while(l and nums[i+k-1]>=nums[l[-1]]):
-                l.pop()
-            l.append(i+k-1)
-            
-            if i-1==l[0]:
-                l.popleft()
-            ans.append(nums[l[0]])
-            
+            heapq.heappush(pq, (-nums[i], nums[i]))
+        
+        idx = k
+        while idx < len(nums):
+            heapq.heappush(pq, (-nums[idx], nums[idx]))
+            out[nums[idx-k]] += 1
+
+            while True:
+                top = heapq.heappop(pq)[1]
+                if out[top] == 0:
+                    heapq.heappush(pq, (-top, top))
+                    break
+                out[top] -= 1
+
+            ans.append(top)
+            idx += 1
         return ans
