@@ -37,11 +37,11 @@ class Solution:
            
                         
         # 오른쪽 찾기
-        if newR == newL and newR != intervals[leftIdx][0] and not intervals[leftIdx][0] <= newL <= intervals[leftIdx][1]:
-            intervals.insert(leftIdx, [newL, newR])
-            return intervals
+        # if newR == newL and newR != intervals[leftIdx][0] and not intervals[leftIdx][0] <= newL <= intervals[leftIdx][1]: # 같은 곳이어서 인서트
+        #     intervals.insert(leftIdx, [newL, newR])
+        #     return intervals
         
-        if newR < intervals[leftIdx][0]:
+        if newR < intervals[leftIdx][0]: # 겹치는 곳이 없어서 인서트
             intervals.insert(leftIdx, [newL, newR])
             return intervals
         
