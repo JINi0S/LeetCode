@@ -1,19 +1,21 @@
-class Solution:
-    direct = [[0,1],[1,0],[0,-1],[-1,0]]
-    
-    def inRange(self, board, x, y) -> bool:
-        return 0 <= x <len(board) and 0 <= y < len(board[0])
-                
+class Solution:   
     def exist(self, board: List[List[str]], word: str) -> bool:
+        direct = [[0,1],[1,0],[0,-1],[-1,0]]
+    
+
+        def inRange(x, y) -> bool:
+            return 0 <= x <len(board) and 0 <= y < len(board[0])
+        
+        
         def dfs(x, y, idx, visited) -> bool:
             if idx == len(word) - 1:  # 마지막 글자까지 찾았을 경우
                 return True
 
             for d in range(4):
-                nx = x + self.direct[d][0]
-                ny = y + self.direct[d][1]
+                nx = x + direct[d][0]
+                ny = y + direct[d][1]
 
-                if not self.inRange(board, nx, ny) or (nx,ny) in visited:
+                if not inRange(nx, ny) or (nx, ny) in visited:
                     continue
 
                 nextWord = word[idx+1]
@@ -22,9 +24,7 @@ class Solution:
                     if dfs(nx,ny,idx+1,visited):
                         return True
                     visited.remove((nx,ny))
-
             return False
-
         
         
         if len(word) > len(board) * len(board[0]):
