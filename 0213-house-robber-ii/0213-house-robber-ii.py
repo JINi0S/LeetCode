@@ -8,7 +8,7 @@ class Solution:
             n = len(nums)
             dp = [0 for i in range(n)]
             for i in range(0, 2):
-                dp[i] = max(list(nums[0:i+1]))
+                dp[i] = max(nums[0:i+1])
             for i in range(2, n):
                 dp[i] = max(dp[i-2] + nums[i], dp[i-1])
             return dp[n-1]
